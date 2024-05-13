@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using TennisBookings.BackgroundServices;
 using TennisBookings.External;
 using TennisBookings.Services.Weather;
 
@@ -14,6 +15,7 @@ public static class WeatherServiceCollectionExtensions
 			services.AddHttpClient<IWeatherApiClient, WeatherApiClient>();
 			services.TryAddSingleton<IWeatherForecaster, WeatherForecaster>();
 			services.Decorate<IWeatherForecaster, CachedWeatherForecaster>();
+			services.AddHostedService<WeatherCacheService>();
 		}
 		else
 		{
