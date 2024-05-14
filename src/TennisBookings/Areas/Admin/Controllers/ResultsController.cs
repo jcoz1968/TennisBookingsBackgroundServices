@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TennisBookings.Processing;
 using TennisBookings.ResultsProcessing;
 
 namespace TennisBookings.Areas.Admin.Controllers;
@@ -12,13 +13,16 @@ public class ResultsController : Controller
 {
 	private readonly IResultProcessor _resultProcessor;
 	private readonly ILogger<ResultsController> _logger;
+	private readonly FileProcessingChannel _fileProcessingChannel;
 
 	public ResultsController(
 		IResultProcessor resultProcessor,
-		ILogger<ResultsController> logger)
+		ILogger<ResultsController> logger,
+		FileProcessingChannel fileProcessingChannel)
 	{
 		_resultProcessor = resultProcessor;
 		_logger = logger;
+		_fileProcessingChannel = fileProcessingChannel;
 	}
 
 	[HttpGet]
@@ -74,14 +78,32 @@ public class ResultsController : Controller
 
 		if (file is object && file.Length > 0)
 		{
-			// TODO
+			var fileName = Path.GetTempFileName(); // Upload to a temp file path
+			using(var stream = new FileStream(fileName, FileMode.Create, FileAccess.Write))
+			{
+				await file.CopyToAsync(stream, cancellationToken);
+			}
+			using var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+			cts.CancelAfter(TimeSpan.FromSeconds(3));
+			try
+			{
+				var fileWritten = await _fileProcessingChannel.AddFileAsync(fileName, cts.Token);
+				if (fileWritten)
+				{
+					sw.Stop();
+					_logger.LogInformation("Time for result upload was {ElapsedMilliseconds}ms.", sw.ElapsedMilliseconds);
+					return RedirectToAction("UploadComplete");
+				}
+			}
+			catch (OperationCanceledException) when (cts.Token.IsCancellationRequested)
+			{
+				System.IO.File.Delete(fileName);
+			}
 		}
 
 		sw.Stop();
-
 		_logger.LogInformation("Time taken for result upload and processing " +
 			"was {ElapsedMilliseconds}ms.", sw.ElapsedMilliseconds);
-
 		return RedirectToAction("UploadFailed");
 	}
 

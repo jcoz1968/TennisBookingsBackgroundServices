@@ -1,5 +1,6 @@
 using TennisBookings.Processing;
 using TennisBookings.ResultsProcessing;
+using TennisBookings.Web.BackgroundServices;
 
 namespace TennisBookings.DependencyInjection;
 
@@ -14,7 +15,8 @@ public static class TennisResultProcessingServiceCollectionExtensions
 				options.BaseAddress = config.GetSection("ExternalServices:TennisPlayersApi")["Url"])
 			.AddStatisticsApiClient(options =>
 				options.BaseAddress = config.GetSection("ExternalServices:StatisticsApi")["Url"])
-			.AddSingleton<FileProcessingChannel>();
+			.AddSingleton<FileProcessingChannel>()
+			.AddHostedService<FileProcessingService>();
 
 		return services;
 	}
