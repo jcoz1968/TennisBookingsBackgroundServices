@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisStats.Api", "src\Tenn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisBookings.ScoreProcessor", "src\TennisBookings.ScoreProcessor\TennisBookings.ScoreProcessor.csproj", "{35134948-92FF-49CA-9970-8855A7ADC2AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisBookings.ScoreProcessor.Tests", "test\TennisBookings.ScoreProcessor.Tests\TennisBookings.ScoreProcessor.Tests.csproj", "{32A2C7F9-7936-4B6F-A6D5-9E013F66E630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TennisBookings.ScoreProcessor.Tests", "test\TennisBookings.ScoreProcessor.Tests\TennisBookings.ScoreProcessor.Tests.csproj", "{32A2C7F9-7936-4B6F-A6D5-9E013F66E630}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleWorkerService", "src\ExampleWorkerService\ExampleWorkerService.csproj", "{8DD4BC2C-1456-45CB-9065-ECD8573F610E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -159,6 +161,18 @@ Global
 		{32A2C7F9-7936-4B6F-A6D5-9E013F66E630}.Release|x64.Build.0 = Release|Any CPU
 		{32A2C7F9-7936-4B6F-A6D5-9E013F66E630}.Release|x86.ActiveCfg = Release|Any CPU
 		{32A2C7F9-7936-4B6F-A6D5-9E013F66E630}.Release|x86.Build.0 = Release|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Debug|x64.Build.0 = Debug|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Debug|x86.Build.0 = Debug|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Release|x64.ActiveCfg = Release|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Release|x64.Build.0 = Release|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Release|x86.ActiveCfg = Release|Any CPU
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -175,6 +189,7 @@ Global
 		{1C5C3EC0-43DD-413A-B3CD-240C09C33507} = {02F9AF1C-3F55-4AC5-AD84-2409E1EA45B0}
 		{35134948-92FF-49CA-9970-8855A7ADC2AC} = {B5BA0B59-8D91-4F07-8090-34BDE097EFC9}
 		{32A2C7F9-7936-4B6F-A6D5-9E013F66E630} = {AD0738BA-577C-463D-8617-1B9D4544FE14}
+		{8DD4BC2C-1456-45CB-9065-ECD8573F610E} = {B5BA0B59-8D91-4F07-8090-34BDE097EFC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48D28C8F-7C17-44A2-8CBC-FE82743DB063}
